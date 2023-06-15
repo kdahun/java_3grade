@@ -34,16 +34,6 @@ public class main {
 				pass = scan.next();
 
 				try {
-					FileWriter write = new FileWriter("subscribers.txt",true);
-					write.write("1\r\n");
-					write.write("root root 1234\r\n");
-					write.close();
-
-				}catch(IOException e){
-
-				}
-
-				try {
 					FileReader reader = new FileReader("subscribers.txt");
 					BufferedReader read = new BufferedReader(reader);
 					String line =read.readLine();
@@ -60,20 +50,50 @@ public class main {
 						p[i]=new person(arr[0],arr[1],arr[2]);
 
 					}
+					
+					for(person i:p) {
+						if(i.getId().equals(id) && i.getPass().equals(pass)) {
+							System.out.println("=>"+i.getName()+"님 반갑습니다");
+						}
+					}
+
 					//reader.read()
-				}catch(IOException e) {
+				}catch(Exception e) {
+					try {
+						FileWriter write = new FileWriter("subscribers.txt",true);
+						write.write("1\r\n");
+						write.write("root root 1234\r\n");
+						System.out.println("=>root 님 반갑습니다");
+						write.close();
 
-				}
+					}catch(IOException e1){
 
-				for(person i:p) {
-					if(i.getId().equals(id) && i.getPass().equals(pass)) {
-						System.out.println("=>"+i.getName()+"님 반갑습니다");
 					}
 				}
 
+				
 				break;
 			case 2:
+				try {
+					FileReader reader = new FileReader("subscribers.txt");
+					BufferedReader read = new BufferedReader(reader);
+					int count2=0;
+					while(read.readLine()!=null) {
+						count2++;
+					}
+					count=count2+1;
+				}catch(IOException e) {
+					
+				}
 				
+				try {
+					FileWriter write = new FileWriter("subscribers.txt",true);
+					write.write("2\r\n",0,1);
+					write.close();
+
+				}catch(IOException e1){
+
+				}
 				break;
 			case 3:
 
